@@ -23,4 +23,13 @@ public static class NavigationManagerExtensions
         services.AddSingleton<ICustomNavigationManager>(sp => sp.GetRequiredService<LockableNavigationManager>());
         services.AddSingleton<ILockableNavigationManager>(sp => sp.GetRequiredService<LockableNavigationManager>());
     }
+
+    /// <summary>Adds services for the lockable navigation manager as Scoped.</summary>
+    /// <param name="services">The service collection to register with.</param>
+    public static void AddLockableNavigationManagerScoped(this IServiceCollection services)
+    {
+        services.AddScoped<LockableNavigationManager>();
+        services.AddScoped<ICustomNavigationManager>(sp => sp.GetRequiredService<LockableNavigationManager>());
+        services.AddScoped<ILockableNavigationManager>(sp => sp.GetRequiredService<LockableNavigationManager>());
+    }
 }
